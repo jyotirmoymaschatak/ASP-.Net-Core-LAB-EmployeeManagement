@@ -48,13 +48,22 @@ namespace EmployeeManagement
             //app.UseFileServer(fileServerOptions);
             //app.UseFileServer();
 
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvcWithDefaultRoute();
 
-            app.Run(async (context) =>
+            app.UseMvc(routes =>
             {
-                //throw new Exception("Some error processing the request!");
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute("default", "{controller=Home}/{Action=Index}/{id?}");
             });
+
+
+
+            //app.Run(async (context) =>
+            //{
+            //    //throw new Exception("Some error processing the request!");
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
+
+            //app.UseMvc();
         }
     }
 }

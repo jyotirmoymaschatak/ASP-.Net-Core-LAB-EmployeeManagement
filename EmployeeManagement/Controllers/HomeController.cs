@@ -8,9 +8,14 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
 {
+    //[Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
+        //[Route("~/home")]
+        //[Route("Index")]
+        //[Route("[action]")]
+        //[Route("~/")]
         public ViewResult Index()
         {
             //return Json(new { id = 1, name = "Jyotirmoy" }); ;
@@ -18,6 +23,7 @@ namespace EmployeeManagement.Controllers
             var model = _employeeRepository.GetAllEmployee();
             return View(model);
         }
+
         public ViewResult Test()
         {
            
@@ -30,9 +36,10 @@ namespace EmployeeManagement.Controllers
             _employeeRepository = employeeRepository;
         }
 
-        public ViewResult Details()
+        //[Route("{id?}")]
+        public ViewResult Details(int? id)
         {
-            Employee model = _employeeRepository.GetEmployee(1);
+            //Employee model = _employeeRepository.GetEmployee(id);
             //return View(model);
             //return View("Test");
             //return View("MyViews/Test.cshtml");
@@ -45,9 +52,14 @@ namespace EmployeeManagement.Controllers
             //ViewBag.PageTitle = "Employee Details";
             //return View();
 
+            if (id == 0)
+                id = 1;
+            
+
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
-                Employee = _employeeRepository.GetEmployee(1),
+
+                Employee = _employeeRepository.GetEmployee(id??1),
                 PageTitle = "Employee Details"
             };
 
