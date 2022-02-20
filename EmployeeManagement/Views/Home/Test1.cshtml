@@ -1,0 +1,37 @@
+﻿@*@model EmployeeManagement.Models.Employee*@
+@model EmployeeManagement.ViewModels.HomeDetailsViewModel
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <h3>
+        @*@ViewData["PageTitle"]*@
+        @Model.PageTitle
+    </h3>
+
+    @*@{
+            //var employee = ViewData["Employee"] as EmployeeManagement.Models.Employee;
+
+        }*@
+
+<div>
+    @*Name: @ViewBag.Employee.Name*@
+    @*Name: @Model.Name*@
+    Name: @Model.Employee.Name
+
+</div>
+
+<div>
+    @*Email: @ViewBag.Employee.Email*@
+    @*Email:  @Model.Email*@
+    Email:  @Model.Employee.Email
+</div>
+
+<div>
+    @*Dept: @ViewBag.Employee.Department*@
+    @*Dept:  @Model.Department*@
+    Dept:  @Model.Employee.Department
+</div>
+</body>
+</html>

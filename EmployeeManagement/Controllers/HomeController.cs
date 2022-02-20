@@ -26,9 +26,26 @@ namespace EmployeeManagement.Controllers
 
         public ViewResult Test()
         {
-           
+
             ViewData["code"] = "from codeeee";
             return View();
+        }
+        public ViewResult Test1()
+        {
+            HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
+            {
+                Employee = _employeeRepository.GetEmployee(1),
+                PageTitle = "Page Title from HomeController from Test1 Action Method!"
+            };
+            //Employee model = _employeeRepository.GetEmployee(1);
+            //ViewData["Employee"] = model;
+            //ViewData["PageTitle"] = "Page Title from HomeController from Test1 Action Method!";
+
+            //ViewBag.Employee = model;
+            //ViewBag.PageTitle = "Page Title from HomeController from Test1 Action Method!";
+
+            //return View(model);
+            return View(homeDetailsViewModel);
         }
 
         public HomeController(IEmployeeRepository employeeRepository)
@@ -39,6 +56,7 @@ namespace EmployeeManagement.Controllers
         //[Route("{id?}")]
         public ViewResult Details(int? id)
         {
+            #region ViewData ViewBag Dumped / Commented Code for test
             //Employee model = _employeeRepository.GetEmployee(id);
             //return View(model);
             //return View("Test");
@@ -51,15 +69,16 @@ namespace EmployeeManagement.Controllers
             //ViewBag.Employee = model;
             //ViewBag.PageTitle = "Employee Details";
             //return View();
+            #endregion
 
             if (id == 0)
                 id = 1;
-            
+
 
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
 
-                Employee = _employeeRepository.GetEmployee(id??1),
+                Employee = _employeeRepository.GetEmployee(id ?? 1),
                 PageTitle = "Employee Details"
             };
 
